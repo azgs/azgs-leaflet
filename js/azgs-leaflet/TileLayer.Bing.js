@@ -1,3 +1,25 @@
+/* 
+ * Portions of this code and logic copied from OpenLayers and
+ * redistributed under the original Clear BSD license terms:
+ * 
+ * http://trac.osgeo.org/openlayers/browser/license.txt
+ *
+ * Copyright 2005-2010 OpenLayers Contributors, released under 
+ * the Clear BSD license. See authors.txt for a list of contributors.
+ * All rights reserved.
+ *
+ * --
+ *
+ * Leaflet-specific modifications are released under the following
+ * terms:
+ *
+ * This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. 
+ */
+
 L.TileLayer.Bing = L.TileLayer.extend({
   
   supportedTypes: ['Road', 'Aerial', 'AerialWithLabels'],
