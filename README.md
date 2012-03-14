@@ -96,10 +96,30 @@ are laid out in the existing `js/Main.js`.
 			options = { centered: true } // Popup will be centered rather than tied to the feature
 
 ### L.Control.Hover
+- Purpose: Provide a control that can be shown when the user hovers over a GeoJSON feature
+- Usage Example: 
+		
+		hoverPoint = new L.Point(150,200);
+		hoverContent = "<p>Hello World!</p>";
+		control = new L.Control.Hover(hoverPoint, hoverContent, options)
+		
+- Options: You need to provide the controls content as a string (hoverContent) and the control's anchor point as an L.Point (hoverPoint).
+	You can also specify the following options in the `options` object:
+	- position: Inherited from L.Control, this defaults to "hover", which places it in a DOM element separated from 
+		other controls. Overriding this option will simply place the hover control in the standard DOM position, and
+		hoverPoint / offset will be ignored.
+	- offset: an instance of L.Point describing how the control should be offset from the hoverPoint. Defaults to 
+		L.Point(30,-16), which generally places a single line of text  to the right of the given hoverPoint.
 
 ### DateFilter
+- Purpose:
+- Usage Example:
+- Options:
 
 ### L.Marker.AttributeFilter
+- Purpose:
+- Usage Example:
+- Options:
 
 ## Dependencies / Thanks
 - [jQuery](http://jquery.com/)
