@@ -41,8 +41,8 @@ are laid out in the existing `js/Main.js`.
 
 		var geojsonWfsLayer = new L.GeoJSON.WFS("http://opengis.azexperience.org/geoserver/wfs", "vae:azhistoricmines", {
 			pointToLayer: function(latlng) { return new L.CircleMarker(latlng); },
-			popupObj: new JadeContent("templates/popup.jade"),
-			popupOptions: { maxWidth: 530, centered: true },
+			popupObj: new JadeContent("templates/example.jade"),
+			popupOptions: { maxWidth: 530, centered: false },
 			hoverFld: "name"
 		});
 		var map = new L.Map("map");
