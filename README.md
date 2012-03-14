@@ -52,6 +52,7 @@ are laid out in the existing `js/Main.js`.
 	- popupObj: An instance of `JadeContent` that will be used to provide a formatted popup
 	- popupOptions: Options that should be applied to the L.Popup itself
 	- popupFld: The name of a specific property of your GeoJSON features that should provide the popup's content
+	- popupFn: A function to call when a popup is shown. The function will be passed the feature that belongs to the popup
 	- hoverObj: An instance of `JadeContent` that will be used to provide a formatted hover box
 	- hoverFld: The name of a specific property of your GeoJSON features that should provide the hover control's content
 	- inputCrs: The CRS name (e.g. "EPSG:4326") of the data provided by the WFS. Defaults to "EPSG:900913"
@@ -96,7 +97,9 @@ are laid out in the existing `js/Main.js`.
 
 ### L.Control.Hover
 
-### L.DateFilter
+### DateFilter
+
+### L.Marker.AttributeFilter
 
 ## Dependencies / Thanks
 - [jQuery](http://jquery.com/)
