@@ -10,6 +10,7 @@ L.GeoJSON.WFS = L.GeoJSON.extend({
 			if (options.popupObj && options.popupOptions) {
 				e.layer.on("click", function(evt) {
 					e.layer._map.openPopup(options.popupObj.generatePopup(e, options.popupOptions));
+					if (options.popupFn) { options.popupFn(e); }
 				});			
 			}
 			else if (options.popupFld && e.properties.hasOwnProperty(options.popupFld)) {
