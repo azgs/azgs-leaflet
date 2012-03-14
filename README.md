@@ -124,9 +124,32 @@ are laid out in the existing `js/Main.js`.
 	end date.	
 
 ### L.Marker.AttributeFilter
-- Purpose:
+- Purpose: Provide information about how to symbolize features in a GeoJSON.WFS layer based on the value of a particular feature attribute.
 - Usage Example:
-- Options:
+		
+		var symbolRules = {
+			"State Park": new L.Icon({ 
+		    	iconUrl: "style/images/azpark.png",
+		    	iconSize: new L.Point(60,60),
+				shadowUrl: "style/images/azpark-shadow.png",
+				shadowSize: new L.Point(60,60)
+			}),
+			"National Park": new L.Icon({ 
+		    	iconUrl: "style/images/nps-logo.png",
+		    	iconSize: new L.Point(60,60),
+		    	shadowUrl: "style/images/nps-logo-shadow.png",
+				shadowSize: new L.Point(60,60)
+			})
+		};
+		
+		var wfsLayer = new L.GeoJSON.WFS("http://opengis.azexperience.org/geoserver/wfs", "vae:azparks", {
+			pointToLayer: function(latlng) { return new L.Marker.AttributeFilter(latlng, "type", { rules: symbolRules }); }
+		}); 
+		
+- Options: You must specify the L.LatLng of the marker and the name of the attribute that will be used for filtering. If you want it to
+	do anything, you should also provide the following in your options object:
+	- rules: An object that defines what Icons to use depending on the value of the filter attribute. The object's properties should be
+		one possible value for the filter attribute, and the property's value should be the L.Icon instance to use.
 
 ## Dependencies / Thanks
 - [jQuery](http://jquery.com/)
