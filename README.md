@@ -67,7 +67,7 @@ are laid out in the existing `js/Main.js`.
 	
 	2. Create a new instance of the JadeContent class:
 		
-			jadeObj = new JadeContent("templates/popup.jade");
+			jadeObj = new JadeContent("templates/example.jade");
 			
 	3. Get the rendered content by passing a GeoJSON feature to `JadeContent.generateContent`:
 	
