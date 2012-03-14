@@ -26,6 +26,7 @@ L.GeoJSON.WFS = L.GeoJSON.extend({
 					e.layer._map.removeControl(e.layer._hoverControl);
 				});
 			}
+			if (e.layer instanceof L.Marker.AttributeFilter) { e.layer.setIcon(e); }
 		});
 	},
 	
