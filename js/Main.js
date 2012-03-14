@@ -29,5 +29,5 @@ function init(){
 	}); 
 	
 	var center = new L.LatLng(34.1618, -111.53332);
-	map.setView(center, 7).addLayer(natGeoLayer).addLayer(wfsLayer);
+	map.setView(center, 7).addLayer(natGeoLayer);
 }
