@@ -8,9 +8,14 @@ L.TileLayer.ESRI = L.TileLayer.extend({
 	},
 	
 	_loadMetadata: function() {
-		this._callbackId = "esri_tilelayer_" + (L.TileLayer.Bing._callbackId++);
-		that = this;
-	    window[this._callbackId] = function() { L.TileLayer.ESRI.processMetadata.apply(that, arguments); };
+		this._callbackId = "esri_tilelayer_" + (L.TileLayer.ESRI._callbackId++);
+		var that = this;
+		window[this._callbackId] = function(metadata) { 
+	    	that.metadata = metadata;
+	    	that.attribution = metadata.copyrightText;
+	    	if (that._map.attributionControl) { that._map.attributionControl.addAttribution(that.attribution); }
+	    	that._onMetadataLoaded();
+	    };
 	    
 	    var url = this._baseUrl + L.Util.getParamString({ f: "json", callback: this._callbackId }),
         	script = document.createElement("script");
@@ -42,10 +47,3 @@ L.TileLayer.ESRI = L.TileLayer.extend({
 });
 
 L.TileLayer.ESRI._callbackId = 0;
-
-L.TileLayer.ESRI.processMetadata = function(metadata) {
-	  this.metadata = metadata;
-	  this.attribution = metadata.copyrightText;
-	  if (this._map.attributionControl) { this._map.attributionControl.addAttribution(this.attribution); }
-	  this._onMetadataLoaded();
-};
