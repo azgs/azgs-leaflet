@@ -8,7 +8,7 @@ L.TileLayer.ESRI = L.TileLayer.extend({
 	},
 	
 	_loadMetadata: function() {
-		this._callbackId = "esri_tilelayer_metadata";
+		this._callbackId = "esri_tilelayer_" + (L.TileLayer.Bing._callbackId++);
 		that = this;
 	    window[this._callbackId] = function() { L.TileLayer.ESRI.processMetadata.apply(that, arguments); };
 	    
@@ -40,6 +40,8 @@ L.TileLayer.ESRI = L.TileLayer.extend({
 	   }
 	}
 });
+
+L.TileLayer.ESRI._callbackId = 0;
 
 L.TileLayer.ESRI.processMetadata = function(metadata) {
 	  this.metadata = metadata;
