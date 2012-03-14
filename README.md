@@ -112,9 +112,16 @@ are laid out in the existing `js/Main.js`.
 		L.Point(30,-16), which generally places a single line of text  to the right of the given hoverPoint.
 
 ### DateFilter
-- Purpose:
+- Purpose: Filter a GeoJSON.WFS layer by specifying a date range.
 - Usage Example:
-- Options:
+
+		var start = new Date("01 01 2012 00:00:00");
+		var end = new Date(["02 01 2012 00:00:00");
+		var theFilter = new DateFilter("timedate", start, end);
+		var wfsLayer = new GeojsonWfsLayer(wfsUrl, featureTypeName, popupContent, theFilter);
+		
+- Options: You must specify the name of the GeoJSON object's property which contains date information. You must also specify a start and
+	end date.	
 
 ### L.Marker.AttributeFilter
 - Purpose:
