@@ -6,6 +6,12 @@ build a mapping application. This can be used by making adjustments to the
 of the functionality of those layers. Examples of different types of layers
 are laid out in the existing `js/Main.js`.
 
+## Highlights
+- Provides layers for tiled ESRI services and for Bing Maps
+- Provides an asynchronous WFS layer for WFS servers capable of providing a GeoJSON outputFormat
+- Use Jade templates to render popup content based on GeoJSON features
+- Bundled with [Less.js](http://lesscss.org) for better stylesheets
+
 ## Custom Classes
 ### L.TileLayer.Bing
 - Purpose: Provide a Bing Map as an L.TileLayer.
@@ -91,3 +97,9 @@ are laid out in the existing `js/Main.js`.
 ### L.Control.Hover
 
 ### L.DateFilter
+
+## Dependencies / Thanks
+- [jQuery](http://jquery.com/)
+- [Less.js](http://lesscss.org/)
+- [Jade](http://jade-lang.com/)
+- [pagameba's Bing layer](https://gist.github.com/1221998)
