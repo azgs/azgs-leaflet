@@ -26,9 +26,8 @@ are laid out in the existing `js/Main.js`.
 		map.addLayer(esriLayer);
 		
 - Options: You only need to specify the MapServer URL for the Tiled ESRI Service.
-- Note: This will not work with ESRI Services that are not provided in a Web Mercator Projection.
-	- ArcGIS Desktop calls this `Web Mercator (Auxiliary Sphere)`
-	- ArcGIS Server will list the service's spatial reference as `102100 (3857)`
+- Note: This will not work with ESRI Services that are not provided in a Web Mercator Projection. 
+	ArcGIS Desktop calls this `Web Mercator (Auxiliary Sphere)`. ArcGIS Server will list the service's spatial reference as `102100 (3857)`
 
 ### L.GeoJSON.WFS
 - Purpose: Provide access to a WFS server capable of providing GeoJSON as an output format.
@@ -79,13 +78,13 @@ are laid out in the existing `js/Main.js`.
 			};
 			htmlContent = jadeObj.generateContent(feature);
 			
-		Note that the feature's properties become the context for rendering the Jade template
+		*Note that the feature's properties become the context for rendering the Jade template*
 	
 	4. Get an L.Popup or L.Popup.Centered object containing the rendered content:
 		
 			map.openPopup(jadeObj.generatePopup(options));
 			
-		Where `options` is an object that specifies if the popup should be centered on the page or not:
+		... where `options` is an object that specifies if the popup should be centered on the page or not:
 		
 			options = { centered: true } // Popup will be centered rather than tied to the feature
 
