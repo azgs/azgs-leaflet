@@ -9,7 +9,7 @@ are laid out in the existing `js/Main.js`.
 ## Highlights
 - Provides layers for tiled ESRI services and for Bing Maps
 - Provides an asynchronous WFS layer for WFS servers capable of providing a GeoJSON outputFormat
-- Use Jade templates to render popup content based on GeoJSON features
+- Use [Jade Templates](http://jade-lang.com/) to render popup content based on GeoJSON features
 - Bundled with [Less.js](http://lesscss.org) for better stylesheets
 
 ## Custom Classes
