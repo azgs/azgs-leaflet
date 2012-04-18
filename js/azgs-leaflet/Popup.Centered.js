@@ -14,11 +14,11 @@ L.Popup.Centered = L.Popup.extend({
 	
 	_updatePosition: function() {
 		var mapSize = this._map.getSize(),
-			pos = new L.Point(Math.round(mapSize.x / 2),Math.round(mapSize.y * 0.20));
+			pos = this._map.containerPointToLayerPoint(new L.Point(Math.round(mapSize.x / 2),Math.round(mapSize.y * 0.15)));
 		
 		this._containerTop = pos.y - this.options.offset.y;
 		this._containerLeft = pos.x - Math.round(this._containerWidth / 2) + this.options.offset.x;
-
+		
 		this._container.style.top = this._containerTop + 'px';
 		this._container.style.left = this._containerLeft + 'px';
 	}
