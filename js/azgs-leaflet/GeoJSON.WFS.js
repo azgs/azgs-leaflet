@@ -3,10 +3,23 @@ L.GeoJSON.WFS = L.GeoJSON.extend({
 		options = options || {};
 		L.GeoJSON.prototype.initialize.call(this, null, options);
 		
-		this.getFeatureUrl = serviceUrl + "?request=GetFeature&typeName=" + featureType + "&outputformat=json";
+		var wfsVersion = options.wfsVersion || "1.1.0";
+		this.getFeatureUrl = serviceUrl + "?request=GetFeature&outputformat=json&version=" + wfsVersion + "&typeName=" + featureType;
 		if (options.filter && options.filter instanceof DateFilter) { this.getFeatureUrl += "&CQL_FILTER=" + filter.cql; }
 		
 		this.on("featureparse", function(e) {
+			if (e.geometryType != 'Point' && e.geometryType != 'MultiPoint') {
+				if (options.style) {
+					e.layer._originalStyle = options.style;
+					e.layer.setStyle(options.style);
+				} else if (options.filteredStyles) {
+					var fld = options.filteredStyles.propName;
+					var itemVal = e.properties[fld];
+					var style = L.Util.extend({}, options.filteredStyles['default'], options.filteredStyles.styles[itemVal]); 
+					e.layer._originalStyle = style;
+					e.layer.setStyle(style);
+				}
+			}
 			if (options.popupObj && options.popupOptions) {
 				e.layer.on("click", function(evt) {
 					e.layer._map.openPopup(options.popupObj.generatePopup(e, options.popupOptions));
@@ -19,12 +32,21 @@ L.GeoJSON.WFS = L.GeoJSON.extend({
 			if (options.hoverObj || options.hoverFld) {
 				e.layer.on("mouseover", function(evt) {
 					hoverContent = options.hoverObj ? options.hoverObj.generateContent(e) : e.properties[options.hoverFld] || "Invalid field name" ;
-					hoverPoint = e.layer._map.latLngToContainerPoint(e.layer._latlng);
+					hoverPoint = e.layer._map.latLngToContainerPoint(evt.latlng);
 					e.layer._hoverControl = new L.Control.Hover(hoverPoint, hoverContent);
 					e.layer._map.addControl(e.layer._hoverControl);	
 				});
 				e.layer.on("mouseout", function(evt) {
 					e.layer._map.removeControl(e.layer._hoverControl);
+				});
+			}
+			if (options.hoverColor) {
+				e.layer.on("mouseover", function(evt) {
+					var hoverStyle = L.Util.extend({}, e.layer._originalStyle, { stroke: true, color: options.hoverColor, weight: 3 });
+					e.layer.setStyle(hoverStyle);
+				});
+				e.layer.on("mouseout", function(evt) {
+					e.layer.setStyle(e.layer._originalStyle);
 				});
 			}
 			if (e.layer instanceof L.Marker.AttributeFilter) { e.layer.setIcon(e); }
