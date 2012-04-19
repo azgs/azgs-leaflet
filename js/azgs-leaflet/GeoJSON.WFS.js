@@ -32,7 +32,7 @@ L.GeoJSON.WFS = L.GeoJSON.extend({
 			if (options.hoverObj || options.hoverFld) {
 				e.layer.on("mouseover", function(evt) {
 					hoverContent = options.hoverObj ? options.hoverObj.generateContent(e) : e.properties[options.hoverFld] || "Invalid field name" ;
-					hoverPoint = e.layer._map.latLngToContainerPoint(evt.latlng);
+					hoverPoint = e.layer._map.latLngToContainerPoint(evt.target._latlng);
 					e.layer._hoverControl = new L.Control.Hover(hoverPoint, hoverContent);
 					e.layer._map.addControl(e.layer._hoverControl);	
 				});
