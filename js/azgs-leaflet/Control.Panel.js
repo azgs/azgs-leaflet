@@ -25,7 +25,7 @@ L.Control.Panel = L.Control.extend({
 	show: function(feature) {
 		var closeHTML = "<div id='close-" + this._container.id + "' class='close-panel'></div>";
 		this._container.innerHTML = closeHTML + this.options.template.generateContent(feature);
-		this._container.setAttribute("class", "panel-control-visible");
+		$("#" + this._container.id).removeClass("panel-control-hidden");
 		this.hidden = false;
 		
 		if (this.options.onShow) { this.options.onShow(); }
@@ -33,7 +33,7 @@ L.Control.Panel = L.Control.extend({
 	
 	hide: function(feature) {
 		this._container.innerHTML = "";
-		this._container.setAttribute("class", "panel-control-hidden");
+		$("#" + this._container.id).addClass("panel-control-hidden");
 		this.hidden = true;
 	}
 	
