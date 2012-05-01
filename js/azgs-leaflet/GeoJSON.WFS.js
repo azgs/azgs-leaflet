@@ -5,7 +5,7 @@ L.GeoJSON.WFS = L.GeoJSON.extend({
 		
 		var wfsVersion = options.wfsVersion || "1.1.0";
 		this.getFeatureUrl = serviceUrl + "?request=GetFeature&outputformat=json&version=" + wfsVersion + "&typeName=" + featureType;
-		if (options.filter && options.filter instanceof DateFilter) { this.getFeatureUrl += "&CQL_FILTER=" + filter.cql; }
+		if (options.filter && options.filter instanceof DateFilter) { this.getFeatureUrl += "&CQL_FILTER=" + options.filter.cql; }
 		
 		this.on("featureparse", function(e) {
 			if (e.geometryType != 'Point' && e.geometryType != 'MultiPoint') {
