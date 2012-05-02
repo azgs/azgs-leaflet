@@ -8,16 +8,7 @@ L.Control.Panel = L.Control.extend({
 		this.hidden = true;
 		map.activePanel = this;
 		
-		var mapHeight = this._map.getSize().y;
-		var panelHeight = mapHeight;
-		var panelWidth = this.options.width || 200;
-		var panelId = this.options.id || 'panel-control';
-		
-		this._container = L.DomUtil.create('div', 'panel-control-hidden');
-		this._container.id = panelId;
-		this._container.style.height = panelHeight + "px";
-		this._container.style.width = panelWidth + "px";
-		this._container.style.margin = "0px";
+		this._initLayout();
 		
 		return this._container;
 	},
@@ -35,6 +26,25 @@ L.Control.Panel = L.Control.extend({
 		this._container.innerHTML = "";
 		$("#" + this._container.id).addClass("panel-control-hidden");
 		this.hidden = true;
+	},
+	
+	_initLayout: function() {
+		var mapHeight = this._map.getSize().y;
+		var panelHeight = mapHeight;
+		var panelWidth = this.options.width || 200;
+		var panelId = this.options.id || 'panel-control';
+		
+		this._container = L.DomUtil.create('div', 'panel-control-hidden');
+		this._container.id = panelId;
+		this._container.style.height = panelHeight + "px";
+		this._container.style.width = panelWidth + "px";
+		this._container.style.margin = "0px";
+		
+		if (!L.Browser.touch) {
+			L.DomEvent.disableClickPropagation(this._container);
+		} else {
+			L.DomEvent.addListener(this._container, 'click', L.DomEvent.stopPropagation);
+		}
 	}
 	
 });
